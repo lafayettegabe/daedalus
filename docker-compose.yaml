@@ -5,6 +5,7 @@ services:
     build:
       context: /
       dockerfile: /apps/api/Dockerfile
+    scale: 1
     mem_limit: 1g
     ports:
       - '5000:5000'
@@ -19,6 +20,7 @@ services:
     build:
       context: /
       dockerfile: /apps/auth/Dockerfile
+    scale: 1
     mem_limit: 1g
     ports:
       - '5001:5001'
@@ -33,6 +35,7 @@ services:
     build:
       context: /
       dockerfile: /apps/template/Dockerfile
+    scale: 1
     mem_limit: 1g
     ports:
       - '5002:5002'
