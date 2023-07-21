@@ -1,0 +1,43 @@
+services:
+
+  api:
+    build:
+      context: /
+      dockerfile: /apps/api/Dockerfile
+    mem_limit: 1g
+    ports:
+      - '5000:5000'
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app # mount the app folder to container | this is for development only
+      - /usr/src/app/node_modules # node_modules should be mounted as volume to avoid installing dependencies in container
+    command: pnpm run start api
+
+  auth:
+    build:
+      context: /
+      dockerfile: /apps/auth/Dockerfile
+    mem_limit: 1g
+    ports:
+      - '5001:5001'
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app # mount the app folder to container | this is for development only
+      - /usr/src/app/node_modules # node_modules should be mounted as volume to avoid installing dependencies in container
+    command: pnpm run start auth
+
+  template:
+    build:
+      context: /
+      dockerfile: /apps/template/Dockerfile
+    mem_limit: 1g
+    ports:
+      - '5002:5002'
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app # mount the app folder to container | this is for development only
+      - /usr/src/app/node_modules # node_modules should be mounted as volume to avoid installing dependencies in container
+    command: pnpm run start template
