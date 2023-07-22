@@ -5,7 +5,8 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
-    mem_limit: 1G
+    scale: 2
+    mem_limit: 512M
     env_file:
       - .env
     volumes:
@@ -21,7 +22,8 @@ services:
     build:
       context: .
       dockerfile: apps/auth/Dockerfile
-    mem_limit: 1G
+    scale: 2
+    mem_limit: 512M
     env_file:
       - .env
     volumes:
@@ -37,7 +39,8 @@ services:
     build:
       context: .
       dockerfile: apps/template/Dockerfile
-    mem_limit: 1G
+    scale: 2
+    mem_limit: 512M
     env_file:
       - .env
     volumes:
@@ -53,7 +56,8 @@ services:
     image: nginx
     ports:
       - "80:80"
-    mem_limit: 1G
+    scale: 2
+    mem_limit: 512M
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
