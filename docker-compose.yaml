@@ -10,6 +10,8 @@ services:
       - .:/usr/src/app # mount the app folder to container | this is for development only
       - /usr/src/app/node_modules # node_modules should be mounted as volume to avoid installing dependencies in container
     command: pnpm run start api
+    networks:
+      - daedalus_network
 
   auth:
     build:
@@ -22,6 +24,8 @@ services:
       - .:/usr/src/app # mount the app folder to container | this is for development only
       - /usr/src/app/node_modules # node_modules should be mounted as volume to avoid installing dependencies in container
     command: pnpm run start auth
+    networks:
+      - daedalus_network
 
   template:
     build:
@@ -34,6 +38,8 @@ services:
       - .:/usr/src/app # mount the app folder to container | this is for development only
       - /usr/src/app/node_modules # node_modules should be mounted as volume to avoid installing dependencies in container
     command: pnpm run start template
+    networks:
+      - daedalus_network
 
   nginx:
     image: nginx
