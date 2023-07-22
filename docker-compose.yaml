@@ -12,6 +12,8 @@ services:
     command: pnpm run start api
     networks:
       - daedalus_network
+    expose:
+      - "5000"
 
   auth:
     build:
@@ -26,6 +28,8 @@ services:
     command: pnpm run start auth
     networks:
       - daedalus_network
+    expose:
+      - "5001"
 
   template:
     build:
@@ -40,6 +44,8 @@ services:
     command: pnpm run start template
     networks:
       - daedalus_network
+    expose:
+      - "5002"
 
   nginx:
     image: nginx
