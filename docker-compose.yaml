@@ -4,8 +4,6 @@ services:
       context: .
       dockerfile: apps/api/Dockerfile
     mem_limit: 1G
-    ports:
-      - '5000:5000'
     env_file:
       - .env
     volumes:
@@ -18,8 +16,6 @@ services:
       context: .
       dockerfile: apps/auth/Dockerfile
     mem_limit: 1G
-    ports:
-      - '5001:5001'
     env_file:
       - .env
     volumes:
@@ -32,11 +28,27 @@ services:
       context: .
       dockerfile: apps/template/Dockerfile
     mem_limit: 1G
-    ports:
-      - '5002:5002'
     env_file:
       - .env
     volumes:
       - .:/usr/src/app # mount the app folder to container | this is for development only
       - /usr/src/app/node_modules # node_modules should be mounted as volume to avoid installing dependencies in container
     command: pnpm run start template
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    mem_limit: 1G
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - api
+      - auth
+      - template
+    networks:
+      - daedalus_network
+
+networks:
+  daedalus_network:
+    driver: bridge
