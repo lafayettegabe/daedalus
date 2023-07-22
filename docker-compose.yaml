@@ -5,8 +5,7 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
-    scale: 1
-    mem_limit: 512M
+    mem_limit: 1G
     env_file:
       - .env
     volumes:
@@ -22,8 +21,7 @@ services:
     build:
       context: .
       dockerfile: apps/auth/Dockerfile
-    scale: 2
-    mem_limit: 512M
+    mem_limit: 1G
     env_file:
       - .env
     volumes:
@@ -39,8 +37,7 @@ services:
     build:
       context: .
       dockerfile: apps/template/Dockerfile
-    scale: 2
-    mem_limit: 512M
+    mem_limit: 1G
     env_file:
       - .env
     volumes:
