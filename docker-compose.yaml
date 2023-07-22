@@ -3,7 +3,7 @@ services:
     build:
       context: /
       dockerfile: /apps/api/Dockerfile
-    mem_limit: 1g
+    mem_limit: 1Gi
     ports:
       - '5000:5000'
     env_file:
@@ -17,7 +17,7 @@ services:
     build:
       context: /
       dockerfile: /apps/auth/Dockerfile
-    mem_limit: 1g
+    mem_limit: 1Gi
     ports:
       - '5001:5001'
     env_file:
@@ -31,7 +31,7 @@ services:
     build:
       context: /
       dockerfile: /apps/template/Dockerfile
-    mem_limit: 1g
+    mem_limit: 1Gi
     ports:
       - '5002:5002'
     env_file:
